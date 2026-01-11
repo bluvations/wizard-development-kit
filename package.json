@@ -9,6 +9,7 @@
     "build": "tsc && npm run copy-templates",
     "copy-templates": "mkdir -p dist/templates && cp src/templates/*.ts src/templates/*.json dist/templates/",
     "watch": "tsc --watch",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

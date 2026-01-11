@@ -2,13 +2,58 @@
 
 A TypeScript-based Node.js command-line utility to bootstrap repositories and frameworks. This is the foundational version that exposes the `conjure` command.
 
+## Recommended Usage (local folder dependency)
+
+The intended workflow is to keep a copy of this repository in your project repo (as a sibling folder), install it as a local `file:` dependency, and run the CLI via `npx`.
+
+### Project layout
+
+At the root of your new project repository:
+
+```
+my-project/
+  wizard-development-kit/
+  package.json
+  package-lock.json
+```
+
+### Root `package.json` (in your project repo)
+
+Create a `package.json` next to `wizard-development-kit/`:
+
+```json
+{
+  "name": "my-wdk-project",
+  "private": true,
+  "version": "0.0.0",
+  "devDependencies": {
+    "wizards-deployment-kit": "file:./wizard-development-kit"
+  }
+}
+```
+
+Then install dependencies:
+
+```bash
+npm install
+```
+
+After that, run commands from your project root:
+
+```bash
+npx conjure init
+npx conjure add-stage
+npx conjure add-module amazon-connect-foundation
+npx conjure deploy dev amazon-connect-foundation
+```
+
 ## Development
 
 ### Prerequisites
 - Node.js v14+ installed
 - npm or yarn
 
-### Installation (local development)
+### Installation (WDK local development)
 
 1. Install dependencies:
 ```bash
@@ -20,7 +65,7 @@ npm install
 npm run build
 ```
 
-3. Link the CLI globally:
+3. (Optional) Link the CLI globally:
 ```bash
 npm link
 ```
