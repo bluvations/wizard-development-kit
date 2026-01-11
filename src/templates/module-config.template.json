@@ -4,5 +4,6 @@
   "createdAt": "{{CREATED_AT}}",
   "createdBy": "{{CREATED_BY}}",
   "requiredInputs": [],
-  "outputs": []
+  "outputs": [],
+  "setupQuestions": []
 }

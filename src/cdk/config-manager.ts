@@ -146,5 +146,5 @@ export class ConfigWriter extends Construct {
  * Helper function to create a config table reference
  */
 export function getConfigTableName(prefixName: string, stageName: string): string {
-  return `wdk-${prefixName}-${stageName}-config`;
+  return `${prefixName}-${stageName}-config`;
 }

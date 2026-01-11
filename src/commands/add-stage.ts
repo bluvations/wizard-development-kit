@@ -209,7 +209,7 @@ async function deployFoundationStack(
     // Build the deploy command arguments
     const args = [
       'deploy',
-      `wdk-${prefixName}-${stageName}-foundation`,
+      `${prefixName}-${stageName}-foundation`,
       '--require-approval', 'never',
       '--output', cdkOutDir,
       '--app', appCommand,
@@ -403,7 +403,7 @@ export function createAddStageCommand(): Command {
         stageConfig.accountNumber,
         stageConfig.region,
         stageConfig.awsProfile,
-        currentUser,
+        stageConfig.addedBy,
         wdkDir
       );
 

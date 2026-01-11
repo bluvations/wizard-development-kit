@@ -1,0 +1,10 @@
+{
+  "moduleName": "foundation",
+  "description": "This sets up a foundational Amazon Connect instance and associated infrastructure. It guides you through some basic choices and sets up  Bluvations Academy suggeseted best practices.",
+  "createdAt": "2025-10-16T16:02:36.676Z",
+  "createdBy": "davideyanson",
+  "requiredInputs": [],
+  "outputs": [
+    
+  ]
+}

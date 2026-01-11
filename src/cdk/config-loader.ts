@@ -25,13 +25,26 @@ export async function loadConfigFromDynamoDB(
     return {};
   }
 
+  const uniqueRequiredInputs = Array.from(
+    new Set(requiredInputs.map(i => i.trim()).filter(i => i.length > 0))
+  );
+
+  if (uniqueRequiredInputs.length === 0) {
+    return {};
+  }
+
   const client = new DynamoDBClient({ region });
   const config: LoadedConfig = {};
 
   try {
     // Parse required inputs into stack/property pairs
-    const keys = requiredInputs.map(input => {
-      const [stackName, propertyName] = input.split('.');
+    const keys = uniqueRequiredInputs.map(input => {
+      const lastDotIndex = input.lastIndexOf('.');
+      if (lastDotIndex <= 0 || lastDotIndex === input.length - 1) {
+        throw new Error(`Invalid required input format: ${input}. Expected: <stackName>.<propertyName>`);
+      }
+      const stackName = input.slice(0, lastDotIndex);
+      const propertyName = input.slice(lastDotIndex + 1);
       return {
         stackName: { S: stackName },
         propertyName: { S: propertyName },
@@ -96,5 +109,5 @@ export function getConfigValue(config: LoadedConfig, stackName: string, property
  * Helper function to create a config table name
  */
 export function getConfigTableName(prefixName: string, stageName: string): string {
-  return `wdk-${prefixName}-${stageName}-config`;
+  return `${prefixName}-${stageName}-config`;
 }
