@@ -54,17 +54,17 @@ export function createInitCommand(): Command {
         {
           type: 'input',
           name: 'projectPrefix',
-          message: 'Enter a project prefix (max 10 characters, lowercase letters only):',
+          message: 'Enter a project prefix (max 15 characters, lowercase letters and hyphens only):',
           validate: (input: string) => {
             const trimmed = input.trim().toLowerCase();
             if (!trimmed) {
               return 'Project prefix is required';
             }
-            if (trimmed.length > 10) {
-              return 'Project prefix must be 10 characters or less';
+            if (trimmed.length > 15) {
+              return 'Project prefix must be 15 characters or less';
             }
-            if (!/^[a-z]+$/.test(trimmed)) {
-              return 'Project prefix must contain only lowercase letters (no numbers or special characters)';
+            if (!/^[a-z][a-z-]*[a-z]$/.test(trimmed)) {
+              return 'Project prefix must contain only lowercase letters and hyphens, and cannot start or end with a hyphen';
             }
             return true;
           },
