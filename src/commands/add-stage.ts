@@ -186,14 +186,14 @@ async function deployFoundationStack(
     // Get the path to the local CDK installation and foundation app
     const cdkPath = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'cdk');
     
-    // Look for foundation app in the WDK package
-    let foundationAppPath = path.join(__dirname, '..', 'cdk', 'foundation-app.js');
-    let useNode = true;
-    
+    // Prefer the TypeScript source in the repo (ensures latest behavior), fall back to compiled JS
+    let foundationAppPath = path.join(__dirname, '..', '..', 'src', 'cdk', 'foundation-app.ts');
+    let useNode = false; // Use ts-node for TypeScript files
+
     if (!fs.existsSync(foundationAppPath)) {
-      // Try the source location for development
-      foundationAppPath = path.join(__dirname, '..', '..', 'src', 'cdk', 'foundation-app.ts');
-      useNode = false; // Use ts-node for TypeScript files
+      // Fallback: foundation app in the compiled WDK package
+      foundationAppPath = path.join(__dirname, '..', 'cdk', 'foundation-app.js');
+      useNode = true;
     }
     
     // Determine the working directory - use WDK package directory for foundation stack

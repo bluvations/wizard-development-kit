@@ -22,17 +22,17 @@ async function main() {
   new FoundationStack(app, `${prefixName}-${stageName}-foundation`, {
     prefixName,
     stageName,
-    moduleName: `${prefixName}-${stageName}--foundation`,
+    moduleName: 'foundation',
     outputs,
     env: {
       account: accountNumber,
       region,
     },
-    description: `WDK AmazonConnectFoundation Module for ${prefixName}-${stageName}`,
+    description: `WDK Foundation Stack for ${prefixName}-${stageName}`,
     tags: {
       Project: prefixName,
       Stage: stageName,
-      Module: 'amazon-connect-foundation',
+      Module: 'foundation',
       ManagedBy: 'WDK',
     },
     createdBy,

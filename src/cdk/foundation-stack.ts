@@ -30,6 +30,8 @@ export class FoundationStack extends WdkModule<FoundationStackProps> {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
+    const encryptionKeyAliasName = `alias/${prefixStage}-kms-key`;
+
     // Create centralized access logs bucket
     const accessLogsBucket = new s3.Bucket(this, `${prefixStage}-access-logs`, {
       bucketName: `${prefixStage}-access-logs`,
@@ -90,6 +92,7 @@ export class FoundationStack extends WdkModule<FoundationStackProps> {
     this.createOutput('ConfigTableArn', configTable.tableArn, 'arn', true);
     this.createOutput('EncryptionKeyId', encryptionKey.keyId, 'string', true);
     this.createOutput('EncryptionKeyArn', encryptionKey.keyArn, 'arn', true);
+    this.createOutput('EncryptionKeyAlias', encryptionKeyAliasName, 'string', true);
     this.createOutput('AccessLogsBucketName', accessLogsBucket.bucketName, 'string', true);
     this.createOutput('AccessLogsBucketArn', accessLogsBucket.bucketArn, 'arn', true);
 
