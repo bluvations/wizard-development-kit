@@ -1,0 +1,8 @@
+{
+  "moduleName": "{{MODULE_NAME_KEBAB}}",
+  "description": "{{MODULE_DESCRIPTION}}",
+  "createdAt": "{{CREATED_AT}}",
+  "createdBy": "{{CREATED_BY}}",
+  "requiredInputs": [],
+  "outputs": []
+}

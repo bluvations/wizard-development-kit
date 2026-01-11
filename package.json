@@ -1,0 +1,55 @@
+{
+  "name": "wizards-deployment-kit",
+  "version": "0.1.0",
+  "description": "Wizard's Deployment Kit CLI. The 'conjure' command bootstraps repos and frameworks (foundation stage).",
+  "bin": {
+    "conjure": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "mkdir -p dist/templates && cp src/templates/*.ts src/templates/*.json dist/templates/",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "wizard",
+    "deployment",
+    "cli",
+    "conjure"
+  ],
+  "homepage": "",
+  "bugs": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "dist",
+    "src/cdk",
+    "README.md"
+  ],
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.910.0",
+    "@aws-sdk/client-sts": "^3.908.0",
+    "@aws-sdk/credential-providers": "^3.908.0",
+    "@aws-sdk/util-dynamodb": "^3.910.0",
+    "@types/inquirer": "^9.0.9",
+    "aws-cdk": "^2.1030.0",
+    "aws-cdk-lib": "^2.220.0",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.1",
+    "constructs": "^10.4.2",
+    "inquirer": "^12.9.6",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
+  }
+}
